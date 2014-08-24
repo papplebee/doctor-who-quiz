@@ -64,7 +64,7 @@ allQuestions[4].correctAnswer = allQuestions[4].answer4;
 
 
 $(window).load(function () {
-	newGame();
+	
 })
 
 $(document).ready(function() {
@@ -72,20 +72,35 @@ $(document).ready(function() {
 	//Set question number to choose from array
 	var questionArrayNum = 0;
 
+	//increase question number by one, unless end of array reached, in which case run finalscore function
+	increaseQuestionNumber = function() {
+		if (questionArrayNum < allQuestions.length) {
+			questionArrayNum += 1;
+		}
+		else {
+			finalScore();
+		}
+	};
+
+	//calculate final score and display to user
+	finalScore = function() {
+
+	};
+	
 	//Start new Game - **function not complete yet**
 	newGame = function() {
 		insertQuestion(allQuestions[questionArrayNum]);
 		coverUpRemove();
 		setCurrentQuestion();
 	};
-
+	
 	//Select current question number in header
 	setCurrentQuestion = function() {
 		$('.current').removeClass('current');
 		var currentQuestionNum	= questionArrayNum + 1;
 		var currentListItemId = "#num"+currentQuestionNum;
 		$(currentListItemId).addClass('current');
-	}
+	};
 
 	//Insert question from array into DOM
 	insertQuestion = function(allQuestionsNum) {
@@ -101,6 +116,12 @@ $(document).ready(function() {
 	coverUpRemove = function() {
 		$('#cover-up').css({'display':'none'});
 	};
+
+	//Start quiz when start button clicked and fade out start panel
+	$('#intro-div').on('click', '#start-button', function() {
+		newGame();
+		$(this).closest('#intro-div').fadeOut(800);
+	});
 
 	//Select an answer
 	$('#quiz-app').on('click', '.answers-ul li', function(event) {
@@ -141,6 +162,8 @@ $(document).ready(function() {
 		$(this).hide();
 		$(this).closest('.button-div').find('.submit').fadeIn(800);
 	});
+
+
 
 
 
