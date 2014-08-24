@@ -27,7 +27,7 @@
 		<h1 id="main-title">Doctor Who Quiz</h1>
 
 		<ul id="question-numbers">
-			<li id="num1">1</li>
+			<li id="num1" class="current">1</li>
 			<li id="num2">2</li>
 			<li id="num3">3</li>
 			<li id="num4">4</li>
@@ -38,15 +38,20 @@
 	<main id="main-content">
 		<div id="quiz-app">
 			<div class="question-div">
-				<h2 class="question">The Doctor travels in the TARDIS,<br>but what does the acronym 'TARDIS' mean?</h2>
+				<h2 class="question"></h2>
 			</div>
 
-			<ul class="answers-ul">
-				<li class="answer1">Travel Articulating Relational Device Inside Space</li>
-				<li class="answer2">TARgeted DISplacement machine</li>
-				<li class="answer3">Time And Relative Dimension In Space</li>
-				<li class="answer4">Time-travel And Reverse Dimension Instrument in Space</li>
-			</ul>
+			<div id="answer-div">
+				<ul class="answers-ul">
+					<li class="answer1"></li>
+					<li class="answer2"></li>
+					<li class="answer3"></li>
+					<li class="answer4"></li>
+				</ul>
+
+				<div id="cover-up">
+				</div>
+			</div>
 
 			<div class="button-div">
 				<button class="submit">Submit</button>
