@@ -1,0 +1,197 @@
+/*==========================================================
+	Title: Main CSS document;
+	Project: Doctor Who Quiz App, Ver. 1.0;
+	Author: Peter Applebee;
+	Date Started: 24/08/2014;
+==========================================================*/
+
+* {
+/*	outline: red 1px solid;	*/
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html {
+	background-color: #000;
+}
+
+body {
+	width: 96%;
+	height: 96%;
+	margin: 2%;
+	color: #fff;
+	font-family: Arial, sans-serif;
+}
+
+/*========================================================
+	HEADER
+========================================================*/
+
+header {
+	width: 100%;
+	height: 60px;
+}
+
+h1 {
+	display: inline-block;
+	float: left;
+	margin: 10px;
+	color: #FFF;
+	font-size: 200%;
+	text-transform: uppercase;
+}
+
+#question-numbers {
+	display: block;
+	float: right;
+	margin: 0;
+	width: 350px;	
+}
+
+#question-numbers li {
+	display: inline-block;
+	float: left;
+	margin: 2px 10px;
+	padding: 15px;
+	width: 50px;
+	height: 50px;
+	border: 2px solid #333;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-ms-border-radius: 15px;
+	border-radius: 15px;
+	text-align: center;
+	font-size: 120%;
+	color: #333;
+	background-color: #37A;
+}
+
+
+/*=========================================================
+	MAIN CONTENT
+=========================================================*/
+
+#main-content {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 60px;
+	background-color: #145;
+	border: 0;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-ms-border-radius: 15px;
+	border-radius: 15px;
+}
+
+#quiz-app {
+	display: block;
+	margin: 0 auto;
+	width: 90%;
+	min-width: 700px;
+	max-width: 900px;
+	border: 0;
+	border-radius: 15px;
+	background-color: #4388cc;
+	box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.question-div {
+
+}
+
+h2 {
+	font-size: 150%;
+	text-align: center;
+}
+
+.question {
+	margin: 0 auto;
+	padding: 30px;
+	width: 600px;
+	color: #FFF;
+}
+
+.answers-ul {
+	margin: 0;
+	padding: 20px 0;
+	background-color: #3570ab;
+}
+
+.answers-ul li {
+	margin: 20px 40px;
+	padding: 20px;
+	border: 2px solid #CCC;
+	border-radius: 15px;
+	text-align: center;
+	font-size: 110%;
+}
+
+.answers-ul li:hover {
+	background-color: #4388cc;
+	box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+}
+
+.button-div {
+	width: 210px;
+	margin: 0 auto;
+}
+
+.button-div button {
+	padding: 0;
+	margin: 30px;
+	width: 150px;
+	height: 80px;
+	border: 0;
+	border-radius: 15px;
+	background-color: #5797ff;
+	color: #FFF;
+	font-size: 150%;
+	text-transform: uppercase;
+	text-align: center;
+	outline: none;
+}
+
+.button-div button:hover {
+	background-color: #92bcff;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.button-div button:active {
+	box-shadow: 0 0 0;
+}
+
+.next {
+	display: none;
+}
+	
+
+
+
+
+/*=========================================================
+	FOOTER
+=========================================================*/
+
+footer {
+	margin: 20px;
+}
+
+footer p {
+	text-align: center;
+	color: #DDD;
+}
+
+footer a:link, footer a:visited {
+	color: #DDD;
+	text-decoration: none;
+}
+
+footer a:hover, footer a:active {
+	text-decoration: underline;
+}
+
+
+
