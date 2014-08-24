@@ -5,6 +5,8 @@
 	Date Started: 24/08/2014;
 ====================================================*/
 
+
+//Questions for Quiz ==================================================================
 function Question(question, answer1, answer2, answer3, answer4) {
 	this.question = question;
 	this.answer1 = answer1;
@@ -58,6 +60,8 @@ allQuestions[4] = new Question(
 	"16",
 	"13");
 allQuestions[4].correctAnswer = allQuestions[4].answer4;
+//End of Questions for Quiz =======================================================
+
 
 $(window).load(function () {
 	newGame();
@@ -65,11 +69,25 @@ $(window).load(function () {
 
 $(document).ready(function() {
 
+	//Set question number to choose from array
+	var questionArrayNum = 0;
+
+	//Start new Game - **function not complete yet**
 	newGame = function() {
-		insertQuestion(allQuestions[0]);
-		$('#cover-up').css({'display':'none'});
+		insertQuestion(allQuestions[questionArrayNum]);
+		coverUpRemove();
+		setCurrentQuestion();
 	};
 
+	//Select current question number in header
+	setCurrentQuestion = function() {
+		$('.current').removeClass('current');
+		var currentQuestionNum	= questionArrayNum + 1;
+		var currentListItemId = "#num"+currentQuestionNum;
+		$(currentListItemId).addClass('current');
+	}
+
+	//Insert question from array into DOM
 	insertQuestion = function(allQuestionsNum) {
 		$('.question').text(allQuestionsNum.question);
 		$('.answer1').text(allQuestionsNum.answer1);
@@ -79,15 +97,22 @@ $(document).ready(function() {
 		correctAnswer = allQuestionsNum.correctAnswer;
 	};
 
+	//Remove invisible cover from over answers
+	coverUpRemove = function() {
+		$('#cover-up').css({'display':'none'});
+	};
+
+	//Select an answer
 	$('#quiz-app').on('click', '.answers-ul li', function(event) {
 		event.preventDefault();
 		$('.answers-ul li').removeClass('answer');
 		$(this).addClass('answer');
 	});
 
+	//Submit answer when pressing 'submit' button and give (correct/incorrect) feedback
 	$('body').on('click', '.submit', function(event) {
 		var answerText = $('.answer').text();
-
+		//Check if user has given correct answer & provide appropriate feedback
 		if (answerText === correctAnswer) {
 			$(this).closest('#quiz-app').find('.answer').addClass('correct');
 			$(this).closest('body').find('.current').addClass('num-correct');
@@ -98,7 +123,25 @@ $(document).ready(function() {
 		};
 
 		$(this).closest('#quiz-app').find('.answer').removeClass('answer');
+		//Display cover up div to stop user selecting more answers
 		$(this).closest('#quiz-app').find('#cover-up').css({'display':'block'});
+		//hide 'submit' button & show (fade-in) 'next question' button
+		$(this).hide();
+		$(this).closest('.button-div').find('.next').fadeIn(800);
 	});
+
+	//Move on to next question, after submitting answer
+	$('body').on('click', '.next', function () {
+		$(this).closest('#quiz-app').find('.correct').removeClass('correct');
+		$(this).closest('#quiz-app').find('.incorrect').removeClass('incorrect');
+		questionArrayNum += 1;
+		insertQuestion(allQuestions[questionArrayNum]);
+		coverUpRemove();
+		setCurrentQuestion();
+		$(this).hide();
+		$(this).closest('.button-div').find('.submit').fadeIn(800);
+	});
+
+
 
 })
