@@ -143,23 +143,29 @@ $(document).ready(function() {
 
 	//Submit answer when pressing 'submit' button and give (correct/incorrect) feedback
 	$('body').on('click', '.submit', function(event) {
-		var answerText = $('.answer').text();
-		//Check if user has given correct answer & provide appropriate feedback
-		if (answerText === correctAnswer) {
-			$(this).closest('#quiz-app').find('.answer').addClass('correct');
-			$(this).closest('body').find('.current').addClass('num-correct');
+		answerText = $('.answer').text();
+		//Check if user has selected an answer, otherwise alert user to chooes one
+		if (answerText === "") {
+			alert("Please choose an answer before submitting");
 		}
 		else {
-			$(this).closest('#quiz-app').find('.answer').addClass('incorrect');
-			$(this).closest('body').find('.current').addClass('num-incorrect');
-		};
+			//Check if user has given correct answer & provide appropriate feedback
+			if (answerText === correctAnswer) {
+				$(this).closest('#quiz-app').find('.answer').addClass('correct');
+				$(this).closest('body').find('.current').addClass('num-correct');
+			}
+			else {
+				$(this).closest('#quiz-app').find('.answer').addClass('incorrect');
+				$(this).closest('body').find('.current').addClass('num-incorrect');
+			};
 
-		$(this).closest('#quiz-app').find('.answer').removeClass('answer');
-		//Display cover up div to stop user selecting more answers
-		$(this).closest('#quiz-app').find('#cover-up').css({'display':'block'});
-		//hide 'submit' button & show (fade-in) 'next question' button
-		$(this).hide();
-		$(this).closest('.button-div').find('.next').fadeIn(800);
+			$(this).closest('#quiz-app').find('.answer').removeClass('answer');
+			//Display cover up div to stop user selecting more answers
+			$(this).closest('#quiz-app').find('#cover-up').css({'display':'block'});
+			//hide 'submit' button & show (fade-in) 'next question' button
+			$(this).hide();
+			$(this).closest('.button-div').find('.next').fadeIn(800);
+		};
 	});
 
 	//Move on to next question, after submitting answer
