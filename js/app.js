@@ -70,11 +70,11 @@ $(window).load(function () {
 $(document).ready(function() {
 
 	//Set question number to choose from array
-	var questionArrayNum = 0;
+	questionArrayNum = 0;
 
 	//increase question number by one, unless end of array reached, in which case run finalscore function
 	increaseQuestionNumber = function() {
-		if (questionArrayNum < allQuestions.length) {
+		if (questionArrayNum < (allQuestions.length - 1)) {
 			questionArrayNum += 1;
 		}
 		else {
@@ -82,13 +82,18 @@ $(document).ready(function() {
 		}
 	};
 
-	//calculate final score and display to user
+	//calculate final score and display to user - **function not complete yet**
 	finalScore = function() {
-
+		var score = $('.num-correct').length;
+		$('#final-score-div').find('#final-score').text("You're final score is "+score+"/5");
+		$('#final-score-div').fadeIn(400);
 	};
 	
 	//Start new Game - **function not complete yet**
 	newGame = function() {
+		questionArrayNum = 0;
+		$('.num-correct').removeClass('num-correct');
+		$('.num-incorrect').removeClass('num-incorrect');
 		insertQuestion(allQuestions[questionArrayNum]);
 		coverUpRemove();
 		setCurrentQuestion();
@@ -123,6 +128,12 @@ $(document).ready(function() {
 		$(this).closest('#intro-div').fadeOut(800);
 	});
 
+	//Start new game when 'new game' button pressed and fade out final score div
+	$('#final-score-div').on('click', '#new-game-button', function() {
+		newGame();
+		$(this).closest('#final-score-div').fadeOut(800);
+	})
+
 	//Select an answer
 	$('#quiz-app').on('click', '.answers-ul li', function(event) {
 		event.preventDefault();
@@ -155,7 +166,7 @@ $(document).ready(function() {
 	$('body').on('click', '.next', function () {
 		$(this).closest('#quiz-app').find('.correct').removeClass('correct');
 		$(this).closest('#quiz-app').find('.incorrect').removeClass('incorrect');
-		questionArrayNum += 1;
+		increaseQuestionNumber();
 		insertQuestion(allQuestions[questionArrayNum]);
 		coverUpRemove();
 		setCurrentQuestion();
